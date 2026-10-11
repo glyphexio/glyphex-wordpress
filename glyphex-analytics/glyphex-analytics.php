@@ -3,7 +3,7 @@
  * Plugin Name:       Glyphex Analytics
  * Plugin URI:        https://glyphex.io/docs/integrations/wordpress
  * Description:       Adds the Glyphex privacy-friendly analytics tag to your site. No cookies, no consent banner.
- * Version:           1.0.0
+ * Version:           1.1.0
  * Requires at least: 6.3
  * Requires PHP:      7.4
  * Author:            Glyphex
@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'GLYPHEX_ANALYTICS_VERSION', '1.0.0' );
+define( 'GLYPHEX_ANALYTICS_VERSION', '1.1.0' );
 define( 'GLYPHEX_ANALYTICS_OPTION', 'glyphex_analytics_options' );
 
 /**
@@ -32,7 +32,6 @@ function glyphex_analytics_defaults() {
 		'site_id'        => '',
 		'exclude_admins' => 1,
 		'exclude_search' => 0,
-		'exclude_hash'   => 0,
 	);
 }
 
@@ -83,7 +82,6 @@ function glyphex_analytics_sanitize( $input ) {
 		'site_id'        => $site_id,
 		'exclude_admins' => empty( $input['exclude_admins'] ) ? 0 : 1,
 		'exclude_search' => empty( $input['exclude_search'] ) ? 0 : 1,
-		'exclude_hash'   => empty( $input['exclude_hash'] ) ? 0 : 1,
 	);
 }
 
@@ -162,12 +160,9 @@ function glyphex_analytics_render_page() {
 							</label><br />
 							<label>
 								<input type="checkbox" name="<?php echo esc_attr( $name ); ?>[exclude_search]" value="1" <?php checked( 1, (int) $opts['exclude_search'] ); ?> />
-								<?php esc_html_e( 'Exclude the search string (?query) from page URLs', 'glyphex-analytics' ); ?>
-							</label><br />
-							<label>
-								<input type="checkbox" name="<?php echo esc_attr( $name ); ?>[exclude_hash]" value="1" <?php checked( 1, (int) $opts['exclude_hash'] ); ?> />
-								<?php esc_html_e( 'Exclude the hash fragment (#section) from page URLs', 'glyphex-analytics' ); ?>
+								<?php esc_html_e( 'Strip the search string from referrer and 404 URLs', 'glyphex-analytics' ); ?>
 							</label>
+							<p class="description"><?php esc_html_e( 'Pageview, outbound link and download URLs never include it.', 'glyphex-analytics' ); ?></p>
 						</fieldset>
 					</td>
 				</tr>
@@ -221,9 +216,6 @@ function glyphex_analytics_script_attributes( $tag, $handle ) {
 	$attrs = '';
 	if ( ! empty( $opts['exclude_search'] ) ) {
 		$attrs .= ' data-exclude-search="true"';
-	}
-	if ( ! empty( $opts['exclude_hash'] ) ) {
-		$attrs .= ' data-exclude-hash="true"';
 	}
 	if ( '' === $attrs ) {
 		return $tag;
