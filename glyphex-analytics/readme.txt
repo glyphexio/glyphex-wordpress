@@ -4,7 +4,7 @@ Tags: analytics, privacy, statistics, cookieless, gdpr
 Requires at least: 6.3
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -23,7 +23,7 @@ Features:
 
 = External service =
 
-This plugin loads a script from https://glyphex.io and sends page view data (page URL, referrer, and basic device information, without cookies) to the Glyphex service for the site ID you enter. By default it sends page views, outbound link clicks, file downloads and rage clicks. Error, Web Vitals, heatmap and 404 tracking can be enabled in your Glyphex settings. Nothing is sent until you enter a Site ID. See the privacy policy at https://glyphex.io/docs/privacy.
+This plugin loads a script from https://glyphex.io and sends page view data (page URL, referrer, and basic device information, without cookies) to the Glyphex service for the site ID you enter. By default it sends page views, outbound link clicks and file downloads. Rage click, error, Web Vitals, heatmap and 404 tracking can be enabled in your Glyphex settings. Nothing is sent until you enter a Site ID. See the privacy policy at https://glyphex.io/docs/privacy.
 
 == Installation ==
 
@@ -43,6 +43,9 @@ In your Glyphex site settings. It is a UUID.
 No, not by default. You can change this in Settings > Glyphex.
 
 == Changelog ==
+
+= 1.1.1 =
+* Disclosure update: rage click tracking is now off by default in Glyphex and can be enabled in your Glyphex settings.
 
 = 1.1.0 =
 * The search string option now says exactly what it strips: referrer and 404 URLs.

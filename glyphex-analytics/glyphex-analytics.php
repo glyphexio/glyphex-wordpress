@@ -3,7 +3,7 @@
  * Plugin Name:       Glyphex Analytics
  * Plugin URI:        https://glyphex.io/docs/integrations/wordpress
  * Description:       Adds the Glyphex privacy-friendly analytics tag to your site. No cookies, no consent banner.
- * Version:           1.1.0
+ * Version:           1.1.1
  * Requires at least: 6.3
  * Requires PHP:      7.4
  * Author:            Glyphex
@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'GLYPHEX_ANALYTICS_VERSION', '1.1.0' );
+define( 'GLYPHEX_ANALYTICS_VERSION', '1.1.1' );
 define( 'GLYPHEX_ANALYTICS_OPTION', 'glyphex_analytics_options' );
 
 /**
